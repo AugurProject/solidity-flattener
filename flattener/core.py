@@ -102,6 +102,7 @@ def main():
 	solc_args += [args.solc_paths] if args.solc_paths else []
 	solc_args += ["--ast"]
 	solc_args += ["--allow-paths", args.allow_paths] if args.allow_paths else []
+	solc_args += ["--optimize-yul"]
 	solc_args += [args.target_solidity_file]
 	
 	solc_proc = subprocess.run(solc_args, stdout=subprocess.PIPE, universal_newlines=True)
