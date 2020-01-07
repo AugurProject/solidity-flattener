@@ -38,8 +38,9 @@ def flatten_contract(solc_AST, output_dest):
 
 		# Pull inheritances
 		inheritances = set(inheritance_regex.findall(contract_ast))
+		fixedInheritances = set([inheritance.split("(")[0] for inheritance in inheritances])
 		using_fors = set(using_for_regex.findall(contract_ast))
-		dep_set = inheritances | using_fors
+		dep_set = fixedInheritances | using_fors
 		dependency_graph[contract_name] = dep_set
 		full_dependency_set.update(dep_set)
 
